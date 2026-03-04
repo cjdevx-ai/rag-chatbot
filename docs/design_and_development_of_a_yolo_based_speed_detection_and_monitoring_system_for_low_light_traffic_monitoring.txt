@@ -1,0 +1,108 @@
+DESIGN AND DEVELOPMENT OF A YOLO-BASED SPEED DETECTION AND MONITORING
+SYSTEM FOR LOW-LIGHT TRAFFIC MONITORING
+
+Abstract
+
+This study addresses the lack of reliable nighttime vehicle speed
+monitoring in the Philippines through the design and development of NOVA
+(Nighttime Observation and Vehicle Analysis), an AI-based speed
+detection and monitoring system for low-light traffic conditions. The
+system was implemented at 283 MH Del Pilar St., 5th Ave., Brgy. 117,
+Caloocan City.
+
+The study is significant to barangay-level traffic enforcement units and
+the Metropolitan Manila Development Authority (MMDA). A quantitative
+experimental research design was employed, consisting of eight
+controlled experiments varying camera mounting height, resolution,
+brightness level, training dataset size, training epochs, confidence
+threshold, and speed sensitivity. Statistical analyses included One-Way
+ANOVA, Independent Samples T-Test, and Repeated Measures ANOVA. A
+5-point Likert scale survey involving ten MMDA officers was conducted to
+evaluate system usability and effectiveness.
+
+Results showed that a 4.0-meter mounting height yielded optimal
+detection performance with 98.96% Precision, 97.34% Recall, and 97.83%
+F1 Score. No significant difference was found between 720p and 1080p
+resolutions, indicating that 720p is a cost-effective alternative. A 50%
+brightness level produced optimal detection, while severe overexposure
+at 90–100% resulted in detection failure.
+
+Training with 5,000 images significantly outperformed training with
+1,000 images, achieving mAP@50-95 of 0.839. Extending training to 150
+epochs produced significant localization improvements only for the
+larger dataset. YOLOv11-Large and YOLOv26-Large achieved optimal
+detection performance within the 60–80% confidence threshold range. A
+sensitivity setting of 17.0 produced the lowest stable mean speed error
+of 8%. The system received an overall acceptability rating of 4.73 out
+of 5.00.
+
+The researchers recommend further evaluation of brightness thresholds
+using measured illuminance levels in lux under actual nighttime field
+conditions to determine system detection limits more accurately.
+
+Keywords: nighttime traffic monitoring, vehicle speed detection, YOLO
+object detection, low-light surveillance, CCTV-based monitoring, deep
+learning, computer vision, traffic enforcement
+
+Description of Research Instrument Used
+
+This section describes the experimental procedures conducted to evaluate
+the NOVA speed detection system under low-light conditions. Eight
+experiments assessed the effects of camera mounting height, resolution,
+illumination level, dataset size, training epochs, confidence threshold,
+and AI model configuration using YOLOv8, YOLOv11, and YOLOv26.
+
+Experiment 1: Effect of Camera Mounting Height on Detection Clarity The
+independent variable was camera height (3m, 3.5m, 4m, 4.5m, 5m). The
+dependent variable was vehicle bounding box size (pixels) and detection
+clarity. One-Way ANOVA determined statistical differences among mounting
+heights.
+
+Experiment 2: Effect of Camera Resolution on Detection Accuracy
+Resolutions tested were 720p and 1080p. The dependent variables were
+accuracy, precision, recall, and F1-score. Performance comparisons
+determined the optimal balance between computational efficiency and
+detection performance.
+
+Experiment 3: Effect of Image Brightness Level on Detection Accuracy
+Brightness levels from 0% to 100% were tested under controlled nighttime
+conditions. Detection metrics included precision, recall, and F1-score.
+Statistical tests determined whether illumination significantly affected
+performance and identified minimum acceptable lighting conditions.
+
+Experiment 4: Effect of Dataset Size on Model Validation Accuracy Two
+datasets containing 1,000 and 5,000 images were used. The dependent
+variable was validation accuracy. Independent Samples T-Test determined
+statistical significance between dataset sizes.
+
+Experiment 5: Effect of Training Epochs on Model Accuracy and Loss
+Training durations were varied up to 150 epochs. Validation loss and
+accuracy were analyzed using Repeated Measures ANOVA to determine
+performance improvements and convergence stability.
+
+Experiment 6: Effect of Confidence Threshold on Detection Precision and
+Recall Confidence thresholds ranging from 60% to 90% were evaluated.
+One-Way ANOVA identified the optimal threshold balancing false positives
+and false negatives.
+
+Experiment 7: Comparison of AI Detection and Manual Ground Truth Speed
+sensitivity settings were evaluated using Mean Absolute Error (MAE) and
+Mean Absolute Percentage Error (MAPE). Statistical comparison verified
+agreement between AI-detected speeds and manually measured ground truth
+values.
+
+Evaluation Instrument on the Effectiveness and Usability of the NOVA
+System
+
+Ten respondents evaluated the NOVA system using a structured 5-point
+Likert scale questionnaire covering:
+
+1.  System Usefulness
+2.  System Usability
+3.  User Satisfaction
+4.  Intention to Continue Use
+
+Weighted mean scores were computed and interpreted against a rating
+scale. The grand mean score of 4.73 indicates that the NOVA system is
+effective, reliable, and suitable for nighttime vehicle speed detection
+under low-light traffic conditions.

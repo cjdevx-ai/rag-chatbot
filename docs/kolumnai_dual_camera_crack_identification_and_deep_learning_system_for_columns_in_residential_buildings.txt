@@ -1,0 +1,124 @@
+KOLUMNAI: A DUAL-CAMERA CRACK IDENTIFICATION AND DEEP LEARNING SYSTEM
+FOR COLUMNS IN RESIDENTIAL BUILDINGS
+
+Abstract
+
+This study presents KolumnAI, a dual-camera crack identification device
+utilizing deep learning for structural column inspection in residential
+buildings. The system integrates stereo vision and a Keras-based deep
+learning model to detect, classify, and measure crack length, width, and
+depth while generating real-time risk level assessments.
+
+Experimental validation covered four crack types: diagonal, hairline,
+horizontal, and structural. Structural cracks achieved 98.63 percent
+accuracy with no statistically significant difference compared to
+digital caliper references (p > 0.05). Diagonal and horizontal cracks
+maintained accuracies above 97 percent, while hairline cracks achieved
+94.32 percent due to sub-millimeter resolution limitations. Optimal
+stability was observed at a 120 mm camera-to-wall distance, achieving
+99.05 percent accuracy. Detection rate remained 96.67 percent under 600
+lumens lighting but declined to 86.67 percent under 150 lumens.
+
+The system achieved near real-time latency of 166 ms per frame.
+Structural engineers reported strong acceptance regarding ergonomics,
+usability, and computational speed. Future improvements should
+incorporate adaptive lighting and higher-resolution sensors to enhance
+fine hairline crack detection.
+
+Keywords: crack detection, stereo vision, deep learning, Keras,
+structural inspection, non-destructive testing, embedded systems
+
+Research Design
+
+The study employed a quantitative experimental research design to
+evaluate KolumnAI under controlled conditions.
+
+Independent Variables: - Camera distance - Lighting intensity - Model
+configuration
+
+Dependent Variables: - Detection accuracy - Precision - Recall -
+F1-score - Mean Average Precision - Measurement consistency
+
+The research workflow consisted of three phases:
+
+1.  System Development Integration of dual-camera hardware, embedded
+    processing unit, and Keras-based deep learning model.
+
+2.  Performance Testing Controlled experiments evaluating crack
+    detection under varying lighting, distance, and configuration
+    parameters.
+
+3.  Validation Comparison of crack measurements against digital caliper
+    references and manual inspection by structural engineers.
+
+Software Implementation
+
+Data Collection
+
+Images were collected from residential concrete columns in selected
+areas of Marikina City. Crack types included hairline, vertical,
+diagonal, and structural. A dual-camera setup captured synchronized
+stereo images under controlled lighting conditions to ensure uniform
+brightness and minimized shadows.
+
+Data Preprocessing
+
+-   Removal of blurred or low-quality samples
+-   Manual annotation using bounding boxes
+-   Image resizing to 224 × 224 pixels
+-   Pixel normalization
+
+Model Development
+
+The crack detection model was developed using Python and the Keras
+framework.
+
+Baseline Hyperparameters: - Epochs: 30 - Input size: 224 × 224 pixels -
+Batch size: 16 - Optimizer: Adam - Learning rate: 0.001
+
+Performance Metrics: - Precision - Recall - F1-score - Mean Average
+Precision (mAP)
+
+Model selection balanced detection accuracy with computational
+efficiency for embedded deployment.
+
+Hardware Architecture
+
+1.  Dual-Camera Image Acquisition Unit Two Raspberry Pi HQ cameras with
+    telephoto lenses were mounted at fixed offsets for stereo vision
+    capture. A custom mounting structure ensured stable alignment and
+    minimized vibration.
+
+2.  Embedded Processing Unit An NVIDIA Jetson Nano B01 served as the
+    inference platform. The integrated GPU enabled on-device crack
+    detection without external computational dependency.
+
+3.  Display Interface An LCD screen displayed detection results,
+    measurements, and risk classification during inspection.
+
+4.  Power Supply A regulated power supply provided stable voltage for
+    cameras and processing hardware.
+
+5.  Camera Calibration Stereo calibration and alignment procedures
+    ensured geometric consistency for depth and measurement estimation.
+
+System Flow
+
+1.  System boot and manual calibration.
+2.  Initialization of camera drivers and deep learning modules.
+3.  GUI launch.
+4.  Stereo image acquisition.
+5.  Image preprocessing (rectification, resizing, noise reduction).
+6.  Crack detection decision module.
+    -   If no crack detected: return to acquisition loop.
+    -   If crack detected: proceed to segmentation.
+7.  Crack segmentation and bounding box localization.
+8.  Stereo measurement module calculates width, length, and orientation.
+9.  Risk assessment module categorizes severity.
+10. Data storage in MySQL database.
+11. PDF inspection report generation.
+12. Continuous monitoring loop until user termination.
+
+This integrated architecture enables automated crack detection,
+measurement, risk assessment, and structured reporting within a portable
+embedded inspection device.

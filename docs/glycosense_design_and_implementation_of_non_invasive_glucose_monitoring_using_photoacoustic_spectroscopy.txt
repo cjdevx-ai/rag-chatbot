@@ -1,0 +1,135 @@
+GLYCOSENSE: DESIGN AND IMPLEMENTATION OF NON-INVASIVE GLUCOSE MONITORING
+USING PHOTOACOUSTIC SPECTROSCOPY
+
+Abstract
+
+Diabetes remains a critical health challenge in the Philippines.
+However, discomfort and recurring costs associated with invasive
+finger-prick testing hinder consistent glucose monitoring. This study
+presents Glycosense, a Non-Invasive Glucose Monitoring (NIGM) system
+utilizing Photoacoustic Spectroscopy (PAS).
+
+The prototype employs a 905 nm pulsed laser to induce thermoelastic
+expansion in glucose molecules. Resulting acoustic pressure waves are
+detected using a Yushi NDT ultrasonic transducer, processed through an
+AD8307 logarithmic detector, and handled by an ESP32 microcontroller. An
+XGBoost regression model trained on 2,730 datasets translates processed
+voltage signals into glucose levels expressed in mg/dL.
+
+Results demonstrate strong predictive capability, achieving a
+correlation coefficient of r = 0.89 when compared with a gold-standard
+glucometer. Clinical reliability was validated using Clarke Error Grid
+Analysis, with results falling within clinically acceptable zones.
+Statistical testing confirmed that physiological variables such as skin
+tone, temperature, hydration, and motion did not significantly impair
+signal integrity. Integration with a dedicated mobile application
+enables real-time logging and monitoring, positioning Glycosense as a
+scalable and painless alternative for diabetes management.
+
+Keywords: non-invasive glucose monitoring, photoacoustic spectroscopy,
+XGBoost regression, diabetes management, signal processing, machine
+learning
+
+Research Design
+
+This study follows an experimental mixed-methods design consisting of:
+
+1.  Computational Development Phase (80 percent) focused on machine
+    learning model development.
+2.  Human Testing Phase (20 percent) focused on validation against
+    invasive standards.
+
+The quantitative core centers on optimizing an XGBoost Regressor to
+predict glucose concentrations from PAS signals. Controlled experiments
+were conducted involving Type 1 and Type 2 diabetic participants.
+
+For each participant: - Reference glucose values were obtained using a
+standard glucometer. - Simultaneous PAS measurements were captured using
+Glycosense. - Three trials were performed per measurement to reduce
+hardware noise.
+
+Three structured datasets were developed:
+
+1.  PAS Dataset containing raw acoustic signals.
+2.  Non-Invasive Skin Type Dataset categorized using the Fitzpatrick
+    scale.
+3.  PhysioCGM Dataset integrating temperature, hydration, and motion.
+
+Testing intervals included: - Pre-meal - Immediate post-meal - Three
+hours post-meal
+
+Signal preprocessing included noise reduction and feature extraction.
+Raw voltage readings were transformed into Absorbance using the
+Beer-Lambert Law:
+
+A = -log10((Vout + 1x10^-6) / 3.61)
+
+Model evaluation metrics:
+
+R-squared (R2): R2 = 1 - [ Σ(ytrue - ypred)^2 / Σ(ytrue - ymean)^2 ]
+
+Mean Absolute Relative Difference (MARD): MARD = (1/n) Σ |(ytrue -
+ypred) / ytrue| x 100
+
+Clarke Error Grid Analysis: Zone A: Within 20 percent of reference or
+below 70 mg/dL when reference is below 70. Zone B: Outside Zone A but
+not leading to inappropriate treatment. Target: At least 95 percent of
+samples in Zone A.
+
+Independent T-tests compared Glycosense results against invasive
+readings. Feature correlation analysis identified signal components most
+predictive of glucose concentration.
+
+System Design
+
+The Glycosense system integrates PAS sensing and machine learning for
+glucose estimation.
+
+Operational Stages:
+
+1.  Initialization and User Input
+    -   System initializes laser and acoustic modules.
+    -   User inputs personal data via mobile application.
+2.  Skin Detection and Measurement Cycle
+    -   Skin presence detection activates pulsed NIR laser excitation.
+    -   Thermoelastic expansion generates ultrasonic waves.
+    -   Piezoelectric transducer converts mechanical waves to electrical
+        signals.
+    -   Signals undergo analog-to-digital conversion.
+    -   Continuous monitoring occurs while skin remains in contact.
+3.  Signal Processing and Machine Learning
+    -   Noise reduction and feature extraction applied.
+    -   Extracted features fed into trained XGBoost Regressor.
+    -   Model predicts glucose concentration.
+4.  Output and Data Logging
+    -   Glucose value displayed on TFT LCD.
+    -   Waveform visualization presented.
+    -   Data stored on SD card.
+    -   Mobile application logs historical readings via Bluetooth
+        connectivity.
+
+The system prioritizes non-invasiveness, user comfort, and predictive
+accuracy.
+
+Description of Research Instrument Used
+
+The Glycosense prototype serves as the primary research instrument. A
+commercial glucometer is used as the validation reference.
+
+Experiment 1: Model Predictive Validation - Training and evaluation
+using PAS, Skin Type, and PhysioCGM datasets. - Performance assessed
+using R2, MARD, and Clarke Error Grid. - Target: At least 95 percent
+clinical prediction reliability.
+
+Experiment 2: Dose-Response Calibration - Peak photoacoustic amplitude
+measured in fasted state. - Compared with capillary glucose reference. -
+Regression analysis performed to determine linearity and sensitivity.
+
+Experiment 3: Clinical and Physiological Validation - Measurements
+conducted at three dietary intervals. - Variables recorded: skin tone,
+hydration, temperature, motion. - Independent T-tests compared results
+with invasive readings. - Kruskal-Wallis H Test evaluated physiological
+influence.
+
+This structured framework validates both computational accuracy and
+real-world applicability of the Glycosense NIGM system.

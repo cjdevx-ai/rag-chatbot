@@ -1,0 +1,125 @@
+PUP SYNAPSE: DESIGN AND IMPLEMENTATION OF A CAMPUS ENVIRONMENTAL
+MONITORING SYSTEM UTILIZING A LORA-BASED MESH NETWORK
+
+Abstract
+
+This study presents PUP Synapse, a campus-wide environmental monitoring
+system utilizing an easy-to-deploy LoRa-based mesh network designed as a
+resilient and autonomous IoT backbone for the Polytechnic University of
+the Philippines Sta. Mesa Campus. The primary beneficiaries include
+students, faculty, and administrative staff who gain access to localized
+microclimatic telemetry to mitigate health risks related to urban heat
+and air pollution.
+
+The system was developed using custom DuoLoRa hardware integrated into a
+decentralized Meshtastic-based mesh architecture. Technical validation
+included a 24-hour co-location consistency protocol and a three-day
+field deployment. One-way ANOVA confirmed high inter-unit calibration
+consistency for PM2.5 (p = 0.3325), PM10 (p = 0.2578), temperature, and
+relative humidity. Field deployment achieved a 97.38 percent Packet
+Delivery Ratio, demonstrating strong signal penetration and resilience
+in dense structural shadow zones.
+
+Linear regression analysis verified a net-positive daily energy budget
+with multi-day zero-solar autonomy for remote nodes, while identifying
+the gateway node as the primary power bottleneck. User evaluation
+yielded a System Usability Scale score of 74.91, indicating high
+post-deployment acceptance. The system also produced statistically
+significant improvements in environmental literacy (p < 0.001) and
+documented habit change in 83.3 percent of participants.
+
+Future iterations should increase gateway battery capacity to 20,000 mAh
+and integrate higher-wattage solar panels to ensure sustained operation
+during prolonged multi-day typhoon events.
+
+Project Development Model
+
+The system was developed using the Prototyping Model of the Software
+Development Life Cycle (SDLC). This iterative approach supported the
+integration of custom hardware, decentralized mesh networking, and
+cloud-based notification systems. Development progressed through five
+non-linear phases:
+
+1.  Requirements Analysis Operational constraints included off-grid
+    power autonomy and deep-indoor signal penetration through reinforced
+    concrete structures. Backend architecture utilized the MING stack
+    (MQTT, InfluxDB, Node-RED, Grafana) and AS923-3 regional parameters
+    to ensure National Telecommunications Commission compliance.
+
+2.  System Architecture Design Data flow was mapped from acquisition and
+    communication layers to cloud and notification layers. A
+    central-gateway topology and a decoupled dual-MCU DuoLoRa carrier
+    board architecture were defined.
+
+3.  Prototype Construction Hardware nodes were fabricated using custom
+    PCBs and 3D-printed PETG enclosures. Nodes integrated SEN55
+    environmental sensors and Air780E LTE modules. Firmware was
+    implemented using the Meshtastic protocol for self-healing mesh
+    functionality.
+
+4.  Field Testing and User Evaluation Validation included co-location
+    calibration testing, traceroute mesh reliability analysis in dead
+    zones, and three-day deployment for Technology Acceptance Model
+    evaluation.
+
+5.  Refinement and Implementation Firmware duty cycles were optimized
+    for energy efficiency. User interface adjustments enhanced
+    commuter-focused arrival intelligence.
+
+Electronics and Hardware Architecture
+
+The system is built around a custom DuoLoRa carrier board featuring a
+dual-MCU architecture:
+
+-   ESP32-S3-WROOM-1U: Manages sensor polling, data parsing, LED
+    control, and system logic.
+-   RAK4630 WisBlock Core (nRF52840): Dedicated LoRa mesh modem running
+    Meshtastic firmware.
+
+This decoupled model isolates sensor processing from mesh routing to
+preserve network stability.
+
+Gateway connectivity is achieved via an Air780E LTE Cat-1 module
+interfaced through high-speed UART. A software-based Deep Recovery
+routine ensures persistent cellular uplink through controlled modem
+resets.
+
+Energy autonomy is provided by:
+
+-   15W monocrystalline solar panel
+-   6,300 mAh battery pack (three 18650 cells in parallel)
+-   DW01A-based Battery Management System
+-   CN3791 MPPT charge controller
+-   TPS63020 Buck-Boost converter with up to 96 percent efficiency
+
+Peripheral interfaces include MAX3485 RS485 transceivers and I2C headers
+for heterogeneous environmental sensors. Proper decoupling ensures ADC
+precision during analog signal acquisition.
+
+Firmware and Software Implementation
+
+The LoRa mesh operates under the PH915 frequency plan aligned with
+AS923-3 standards. The network is configured to Frequency Slot 0
+(917.875 MHz) in compliance with NTC regulations. Modulation parameters
+use Spreading Factor 11 and 250 kHz bandwidth to maximize link budget
+and deep-indoor penetration.
+
+An energy-aware Decoupled Eco-Mode State Machine governs sensor
+operation. The SEN55 particulate sensor operates on a five-minute duty
+cycle with a 10-second warm-up period, followed by snapshot acquisition
+and low-power standby command (0x0037) to preserve battery capacity
+while preventing calibration drift.
+
+Packet transmission includes serialized environmental metrics tagged
+with unique Node IDs. The gateway parser filters complete packets and
+updates node health via timestamp tracking.
+
+Two recovery mechanisms ensure uptime:
+
+1.  Async I2C Recovery for sensor bus freeze conditions.
+2.  LTE Deep Recovery routine triggered after three failed uploads,
+    toggling AT+CFUN states to reinitialize the cellular stack.
+
+This architecture ensures robust environmental telemetry collection,
+regulatory compliance, energy sustainability, and long-term unattended
+operation within dense campus infrastructure.

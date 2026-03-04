@@ -1,0 +1,192 @@
+BANTAYANI: DESIGN AND DEVELOPMENT OF A MOBILE APPLICATION FOR MONITORING
+AND REPORTING BEET ARMYWORM (SPODOPTERA EXIGUA) INFESTATIONS IN ONION
+FARMS IN BONGABON, NUEVA ECIJA
+
+Abstract
+
+This study presents BantayAni, an AI-assisted mobile and web-based
+agricultural information system designed to improve beet armyworm
+(Spodoptera exigua) identification, reporting efficiency, operational
+cost management, and coordinated response in onion farms in Bongabon,
+Nueva Ecija. The system primarily benefits onion farmers and the Local
+Government Unit by enhancing diagnostic reliability, reducing reporting
+delays, and optimizing resource allocation.
+
+An experimental developmental research design was employed. The system
+integrates image-based pest identification, geo-tagged digital
+reporting, and a centralized LGU dashboard. Six structured experiments
+evaluated classification performance, environmental robustness,
+device-level computational efficiency, end-to-end reporting latency,
+operational cost through Activity-Based Costing, and user adoption using
+the System Usability Scale and Technology Acceptance Model.
+
+Results demonstrated 94.67 percent binary classification accuracy and
+100 percent specificity. Image degradation significantly reduced
+identification accuracy, indicating sensitivity to motion blur. Device
+RAM significantly influenced application performance, though
+improvements plateaued beyond mid-range specifications. The digital
+workflow reduced reporting latency from approximately 2.25 hours to 4.43
+minutes and lowered operational cost per report. Usability was
+marginally acceptable (SUS = 64), while perceived usefulness strongly
+predicted behavioral intention to adopt.
+
+Future studies should expand pest classification to other crop-specific
+species, enhance context-aware recommendation capabilities, and conduct
+long-term multi-site deployment to strengthen system scalability and
+reliability.
+
+Keywords: agricultural information system, AI-assisted pest
+identification, beet armyworm, onion farms, workflow optimization
+
+Research Design
+
+This study adopted an experimental developmental research design focused
+on designing, developing, and evaluating an integrated mobile and
+web-based agricultural information system.
+
+The system operates through active internet connectivity to enable
+real-time data transmission, centralized AI processing, and immediate
+access to analytical features for farmers and LGUs.
+
+The experimental component centers on image-based pest identification.
+Farmers capture or upload close-range images of onion plants exhibiting
+suspected infestations. Contextual inputs include:
+
+-   Infestation severity
+-   Farmer observations
+-   GPS location
+-   Timestamp metadata
+
+Images and metadata are transmitted to a centralized server and
+processed by a Large Language Model. The model performs image-based pest
+classification, generates likelihood assessments, and provides
+explanatory outputs.
+
+System performance is evaluated across three dimensions:
+
+1.  Identification Performance Classification outputs are compared with
+    expert-labeled ground truth using precision, recall, F1-score, and
+    average precision derived from confidence thresholds.
+
+2.  Usability Evaluation focuses on ease of image capture, clarity of AI
+    outputs, reporting efficiency, and perceived usefulness.
+
+3.  Operational Reliability Assessment includes data transmission
+    stability, server-side processing integrity, and seamless
+    integration between mobile application and LGU dashboard.
+
+This design ensures evaluation of both technical performance and
+practical deployment within connected agricultural environments.
+
+System Block Diagram
+
+The BantayAni system architecture consists of the following high-level
+modules:
+
+1.  Image Acquisition Module The farmer captures or uploads a pest image
+    using the mobile application.
+
+2.  Image Preparation and Metadata Attachment GPS location and timestamp
+    are embedded automatically.
+
+3.  AI Processing Module The Large Language Model analyzes the image,
+    classifies the organism, and generates explanatory outputs and
+    confidence scores.
+
+4.  Confirmation and Submission Module Farmers review AI results and
+    confirm submission.
+
+5.  Real-Time Data Transmission Confirmed reports are transmitted to the
+    backend server via internet connectivity.
+
+6.  Centralized Cloud Database Images, metadata, and classification
+    results are stored securely.
+
+7.  LGU Web Dashboard Authorized personnel access reports through a
+    verification queue, review classifications, approve or reject
+    submissions, and monitor infestation patterns using GIS mapping.
+
+This architecture integrates mobile capture, AI-driven classification,
+cloud storage, and administrative oversight into a unified pest
+monitoring platform.
+
+Software Architecture
+
+The system follows a client-server architecture:
+
+-   End-User Device: Smartphone running the BantayAni mobile
+    application.
+-   Supabase Backend: Handles account management, data storage, and
+    system logic.
+-   Google Cloud Storage: Stores submitted images and associated
+    metadata.
+-   Gemini 2.5 Flash LLM API: Performs AI-based image classification and
+    contextual reasoning.
+
+Bi-directional communication ensures synchronized data flow between
+mobile clients and backend services.
+
+Process Flow
+
+Farmer Workflow:
+
+1.  User authentication (sign in or register).
+2.  Image capture or upload.
+3.  Automatic metadata attachment (GPS and timestamp).
+4.  Transmission to backend server.
+5.  AI classification and confidence scoring.
+6.  Display of results and advisory recommendation.
+7.  Confirmation and structured report submission.
+8.  Storage in central database and inclusion in GIS monitoring system.
+
+Administrator Workflow:
+
+1.  Login to web dashboard.
+2.  Review reports in verification queue.
+3.  Evaluate image, classification, confidence score, and metadata.
+4.  Approve, reject, or request clarification.
+5.  Update GIS infestation map.
+6.  Trigger advisory feedback to farmer.
+7.  Archive decision for traceability.
+
+This process establishes a complete loop of AI-assisted identification,
+digital reporting, expert validation, and coordinated response.
+
+Research Instrument
+
+The research instrument comprises integrated hardware and software
+components:
+
+1.  Smartphone Device
+
+-   High-resolution camera
+-   GPS capability
+-   Stable internet connectivity
+
+2.  BantayAni Mobile Application
+
+-   Image capture and upload
+-   Contextual data entry
+-   Real-time transmission
+
+3.  AI Processing Engine
+
+-   Large Language Model hosted on centralized server
+-   Image classification and contextual reasoning
+
+4.  Cloud-Based Database and Storage
+
+-   Central repository for images, metadata, and results
+-   Supports real-time aggregation
+
+5.  LGU Web Dashboard
+
+-   Verification queue
+-   GIS-based infestation visualization
+-   Advisory management
+-   Historical record access
+
+The integration of imaging hardware, AI-based identification, cloud
+infrastructure, and GIS-enabled monitoring forms the complete research
+instrument for evaluating the system under real-world agricultural
+conditions.

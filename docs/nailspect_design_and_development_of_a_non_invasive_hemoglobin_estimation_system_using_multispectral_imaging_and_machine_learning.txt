@@ -1,0 +1,139 @@
+NAILSPECT: DESIGN AND DEVELOPMENT OF A NON-INVASIVE HEMOGLOBIN
+ESTIMATION SYSTEM USING MULTI-SPECTRAL IMAGING AND MACHINE LEARNING
+
+Abstract
+
+This study presents NailSpect, a multispectral imaging (MSI) and machine
+learning-based system designed to improve the accuracy of non-invasive
+hemoglobin estimation. The system captures and analyzes the spectral
+signature of the fingernail bed using a 9-LED array prototype. Extracted
+optical features are processed through a Python-based pipeline and
+evaluated against Complete Blood Count (CBC) laboratory results.
+
+Four regression algorithms were assessed on a 10-patient validation set:
+ElasticNet, Multilayer Perceptron, Random Forest, and XGBoost. Results
+indicated that XGBoost utilizing the full 9-LED configuration achieved
+the highest predictive performance, with an RMSE of 0.989 g/dL and MAE
+of 0.813 g/dL. Bland-Altman analysis demonstrated strong clinical
+agreement, showing minimal systematic bias of +0.099 g/dL.
+
+Medical experts rated the device as Acceptable (Mean = 4.13), while
+patients rated it as Highly Acceptable (Mean = 4.72), confirming
+ergonomic viability. Future studies should incorporate large-scale
+clinical trials and evaluate confounding biological variables such as
+skin pigmentation to further enhance predictive accuracy.
+
+Keywords: non-invasive hemoglobin estimation, multispectral imaging,
+machine learning, XGBoost, Bland-Altman analysis, point-of-care testing,
+health monitoring
+
+Research Design
+
+The study employed a quantitative experimental-descriptive research
+design.
+
+Experimental Phase: The experimental component involved systematic
+engineering, hyperparameter tuning, LED configuration optimization, and
+comparative validation of machine learning models against CBC laboratory
+standards. Statistical validation ensured predictive rigor and model
+robustness.
+
+Descriptive Phase: The descriptive component utilized the Technology
+Acceptance Model framework to evaluate clinical integration and user
+acceptability. Structured 5-point Likert-scale questionnaires were
+administered to medical experts and participating patients. Evaluation
+domains included:
+
+1.  Perceived Usefulness
+2.  Perceived Ease of Use
+3.  Attitude Toward Use and Trust
+4.  Behavioral Intention to Use
+
+This integrated methodology ensured assessment of both mathematical
+predictive accuracy and real-world clinical viability.
+
+System Design
+
+The NailSpect prototype captures multispectral images of the fingernail
+bed using a controlled 9-LED array comprising Near-Infrared and visible
+light wavelengths (530 nm and 570 nm). Image acquisition is performed
+through in-person testing to ensure calibration to the system’s optical
+hardware.
+
+A Python-based processing pipeline performs:
+
+-   Region of Interest extraction
+-   Multi-frame averaging to mitigate motion artifacts
+-   Noise reduction
+-   Mean pixel intensity computation per LED burst
+
+The extracted optical signatures are transformed into structured
+numerical features and passed into regression algorithms to estimate
+continuous hemoglobin levels in g/dL.
+
+Live Diagnostic Flow:
+
+1.  System initialization and model loading (XGBoost Setup D).
+2.  User input of biological sex.
+3.  Data acquisition loop collecting 10 independent scans.
+4.  Late Fusion averaging of 10 independent predictions.
+5.  Final hemoglobin estimation computation.
+6.  Sex-dependent classification using Rodak’s Hematology thresholds.
+7.  Display of continuous value and categorical diagnosis (Low, Normal,
+    High).
+
+This Late Fusion strategy minimizes anomalous readings and enhances
+predictive stability.
+
+Description of Research Instrument Used
+
+The primary hardware instrument is the NailSpect prototype. The software
+instrument consists of a Python-based machine learning pipeline.
+
+Quantitative Evaluation Metrics:
+
+-   Mean Pixel Intensity
+-   Absorbance
+-   RMSE
+-   MAE
+-   R-squared
+-   Bland-Altman agreement analysis
+
+Descriptive Instrument:
+
+-   Structured 5-point Likert-scale questionnaire based on TAM
+
+Experimental Framework
+
+Experiment 1: Optimization of Camera Capture Settings Evaluated exposure
+time and frame averaging intervals. Metrics included mean intensity,
+standard deviation, coefficient of variation, and signal-to-noise ratio.
+
+Experiment 2: Hyperparameter Tuning Grid Search with k-fold
+cross-validation determined optimal configurations for ElasticNet,
+Multilayer Perceptron, Random Forest, and XGBoost. Performance metric:
+cross-validation RMSE.
+
+Experiment 3: LED Configuration Optimization Compared multispectral
+setups A, B, C, and D. Measured performance using cross-validation RMSE
+to determine optimal LED subset.
+
+Experiment 4: Algorithm Comparative Validation Tested optimized models
+on independent hold-out set. Evaluated using RMSE, MAE, and R-squared.
+Repeated Measures ANOVA assessed statistical differences between models.
+
+Experiment 5: Clinical Validation Paired prototype predictions with CBC
+laboratory results. Bland-Altman analysis assessed agreement and
+systematic bias.
+
+Experiment 6: Expert Acceptability Evaluation Medical Technologists
+evaluated the prototype using TAM-based questionnaire across four
+domains.
+
+Experiment 7: Patient Acceptability Evaluation Patients assessed device
+comfort, usability, and convenience using TAM-based questionnaire.
+Weighted means determined overall ergonomic viability.
+
+This structured experimental framework ensures engineering optimization,
+statistical rigor, clinical validation, and user-centered acceptability
+of the NailSpect system.
