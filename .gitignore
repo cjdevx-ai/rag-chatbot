@@ -1,0 +1,21 @@
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Environment Variables (Never commitpip  secrets)
+.env
+.venv/
+
+# Logs
+*.log
+
+# IDE / Editor settings
+.vscode/
+.idea/
+
+# Common Dependencies and Build folders
+node_modules/
+dist/
+build/
+bin/
+__pycache__/
