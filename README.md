@@ -26,7 +26,7 @@ A high-performance Retrieval-Augmented Generation (RAG) chatbot designed to prov
 
 #### 1. Clone the Repository
 ```powershell
-git clone <your-repo-url>
+git clone https://github.com/cjdevx-ai/rag-chatbot.git
 cd rag-chatbot
 ```
 
