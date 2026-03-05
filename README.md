@@ -7,6 +7,7 @@ A high-performance Retrieval-Augmented Generation (RAG) chatbot designed to prov
 ### Project Timeline
 - **Started:** March 3, 2026
 - **Shipped:** March 6, 2026
+- **Deployment:** [ece-library-assistant.streamlit.app](https://ece-library-assistant.streamlit.app)
 
 ---
 
