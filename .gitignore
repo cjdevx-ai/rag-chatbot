@@ -13,6 +13,9 @@ Thumbs.db
 .vscode/
 .idea/
 
+#cache
+.rag_cache/
+
 # Common Dependencies and Build folders
 node_modules/
 dist/
